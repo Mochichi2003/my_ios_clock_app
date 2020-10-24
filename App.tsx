@@ -1,15 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
-import {
-  StyleSheet,
-  Text,
-  Switch,
-  View,
-  Button,
-  TextInput,
-} from "react-native";
-import { AppLoading } from "expo";
-import { useDarkMode, DarkModeProvider } from "react-native-dark-mode";
+import "react-native-gesture-handler";
+
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+
+import { StyleSheet, Text, View, Button } from "react-native";
+// import { AppLoading } from "expo";
+// import { useDarkMode, DarkModeProvider } from "react-native-dark-mode";
 
 import dayjs from "dayjs";
 import "dayjs/locale/ja";
@@ -17,7 +14,7 @@ import "dayjs/locale/ja";
 dayjs.locale("ja");
 
 type ClockTypes = { timerID: any };
-// const isDarkMode = useDarkMode()
+
 class Clock extends React.Component<ClockTypes> {
   timerID: any;
   nowtime: string & number;
@@ -33,11 +30,13 @@ class Clock extends React.Component<ClockTypes> {
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
+
   tick() {
     this.setState({
       nowtime: this.nowtimeis(),
     });
   }
+
   nowtimeis() {
     return dayjs().format("YYYY/MM/DD hh:mm:ss");
   }
@@ -48,9 +47,9 @@ class Clock extends React.Component<ClockTypes> {
         <Button
           onPress={() => {
             console.log("てすと" + dayjs().format("YYYY/MM/DD hh:mm:ss:SSS"));
-            alert("わあああああああ")
+            alert("わあああああああ");
           }}
-          title="わーい"
+          title="こんにちは"
           color="#0092ca"
           accessibilityLabel="Learn more about this purple button"
           // style={styles.button}
@@ -64,15 +63,17 @@ class Clock extends React.Component<ClockTypes> {
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar />
-      {/* <TextInput style={styles.textinputForm} defaultValue="Name me!" /> */}
+    <NavigationContainer>
+      <View style={styles.container}>
+        <StatusBar />
+        {/* <TextInput style={styles.textinputForm} defaultValue="Name me!" /> */}
 
-      {/* <Text>只今の時間</Text> */}
-      {/* <Text style={styles.times}>{dayjs().format("YYYY/MM/DD hh:mm:ss")}</Text> */}
-      {/* <Textinput /> */}
-      <Clock />
-    </View>
+        {/* <Text>只今の時間</Text> */}
+        {/* <Text style={styles.times}>{dayjs().format("YYYY/MM/DD hh:mm:ss")}</Text> */}
+        {/* <Textinput /> */}
+        <Clock />
+      </View>
+    </NavigationContainer>
   );
 }
 
