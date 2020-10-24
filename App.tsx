@@ -1,10 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import "react-native-gesture-handler";
 
-import * as React from "react";
+import React, { useCallback } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
-import { StyleSheet, Text, View, Button } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+const Stack = createStackNavigator();
+import { StyleSheet, Text, View, Button, Linking } from "react-native";
 // import { AppLoading } from "expo";
 // import { useDarkMode, DarkModeProvider } from "react-native-dark-mode";
 
@@ -61,9 +64,39 @@ class Clock extends React.Component<ClockTypes> {
   }
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
+const supportedURL = "https://google.com";
+
+const unsupportedURL = "slack://open?team=123456";
+
+const OpenURLButton = ({ url, children }) => {
+  const handlePress = useCallback(async () => {
+    // Checking if the link is supported for links with custom URL scheme.
+    const supported = await Linking.canOpenURL(url);
+
+    if (supported) {
+      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+      // by some browser in the mobile
+      await Linking.openURL(url);
+    } else {
+      // Alert.alert(`Don't know how to open this URL: ${url}`);
+    }
+  }, [url]);
+
+  return <Button title={children} onPress={handlePress} />;
+};
+
+const OpenSettingsButton = ({ children }) => {
+  const handlePress = useCallback(async () => {
+    // Open the custom settings if the app has one
+    await Linking.openSettings();
+  }, []);
+
+  return <Button title={children} onPress={handlePress} />;
+};
+
+class MymainComponent extends React.Component {
+  render() {
+    return (
       <View style={styles.container}>
         <StatusBar />
         {/* <TextInput style={styles.textinputForm} defaultValue="Name me!" /> */}
@@ -72,7 +105,42 @@ export default function App() {
         {/* <Text style={styles.times}>{dayjs().format("YYYY/MM/DD hh:mm:ss")}</Text> */}
         {/* <Textinput /> */}
         <Clock />
+        <OpenURLButton url="https://twitter.com/home">
+          url開くんだよ
+        </OpenURLButton>
+        <OpenSettingsButton>設定を開くんだよ</OpenSettingsButton>
       </View>
+    );
+  }
+}
+
+const HomeScreen = ({ navigation }) => {
+  return (
+    <>
+      <Button
+        title="えへへへのへ"
+        onPress={() => navigation.navigate("Profile", { name: "Jane" })}
+      />
+      <MymainComponent />
+    </>
+  );
+};
+const ProfileScreen = () => {
+  return <Text>This is Jane's profile</Text>;
+};
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: "Welcome" }}
+        />
+
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
