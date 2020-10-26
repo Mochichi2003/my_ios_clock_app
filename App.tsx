@@ -5,9 +5,10 @@ import React, { useCallback } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { createStackNavigator } from "@react-navigation/stack";
+import { Button, ThemeProvider } from "react-native-elements";
 
 const Stack = createStackNavigator();
-import { StyleSheet, Text, View, Button, Linking } from "react-native";
+import { StyleSheet, Text, View, Linking } from "react-native";
 // import { AppLoading } from "expo";
 // import { useDarkMode, DarkModeProvider } from "react-native-dark-mode";
 
@@ -16,9 +17,9 @@ import "dayjs/locale/ja";
 
 dayjs.locale("ja");
 
-type ClockTypes = { timerID: any };
+// type ClockTypes = { timerID: any };
 
-class Clock extends React.Component<ClockTypes> {
+class Clock extends React.Component {
   timerID: any;
   nowtime: string & number;
   constructor(props: any) {
@@ -47,16 +48,20 @@ class Clock extends React.Component<ClockTypes> {
   render() {
     return (
       <View>
-        <Button
-          onPress={() => {
-            console.log("てすと" + dayjs().format("YYYY/MM/DD hh:mm:ss:SSS"));
-            alert("わあああああああ");
-          }}
-          title="こんにちは"
-          color="#0092ca"
-          accessibilityLabel="Learn more about this purple button"
-          // style={styles.button}
-        />
+        <ThemeProvider>
+          <Button
+            onPress={() => {
+              console.log("てすと" + dayjs().format("YYYY/MM/DD hh:mm:ss:SSS"));
+              alert("わあああああああ");
+            }}
+            title="こんにちは"
+            // color="#0092ca"
+            accessibilityLabel="Learn more about this purple button"
+            style={{
+              margin: 5,
+            }}
+          />
+        </ThemeProvider>
 
         <Text style={styles.times}>{this.state.nowtime}</Text>
       </View>
@@ -126,7 +131,7 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 const ProfileScreen = () => {
-  return <Text>This is Jane's profile</Text>;
+  return <Text>This is Jane&apos;s profile</Text>;
 };
 
 export default function App() {
