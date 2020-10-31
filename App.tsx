@@ -12,7 +12,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
-import { Entypo, Fontisto, MaterialIcons } from "@expo/vector-icons";
+import {
+  Entypo,
+  Fontisto,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import {
   Container,
   Header,
@@ -94,7 +98,9 @@ const Fotters = () => {
           }}
         >
           <Fontisto name="home" size={24} color="black" />
-          <Text style={styles.futter_button_text}>Home</Text>
+          <Text style={styles.futter_button_text}>
+            Home
+          </Text>
         </Button>
         <Button
           full
@@ -103,8 +109,14 @@ const Fotters = () => {
             debug("ボタンを押したよTimes");
           }}
         >
-          <Entypo name="back-in-time" size={24} color="black" />
-          <Text style={styles.futter_button_text}>Times</Text>
+          <Entypo
+            name="back-in-time"
+            size={24}
+            color="black"
+          />
+          <Text style={styles.futter_button_text}>
+            Times
+          </Text>
         </Button>
         <Button
           full
@@ -113,8 +125,14 @@ const Fotters = () => {
             debug("ボタンを押したよSettings");
           }}
         >
-          <MaterialIcons name="settings" size={24} color="black" />
-          <Text style={styles.futter_button_text}>Settings</Text>
+          <MaterialIcons
+            name="settings"
+            size={24}
+            color="black"
+          />
+          <Text style={styles.futter_button_text}>
+            Settings
+          </Text>
         </Button>
         <Button
           full
@@ -124,7 +142,9 @@ const Fotters = () => {
           }}
         >
           <Entypo name="calendar" size={24} color="black" />
-          <Text style={styles.futter_button_text}>Calendar</Text>
+          <Text style={styles.futter_button_text}>
+            Calendar
+          </Text>
         </Button>
       </FooterTab>
     </Footer>
@@ -155,9 +175,18 @@ export default class AnatomyExample extends Component {
 
           <TouchableOpacity
             onPress={() => alert("Hello, world!")}
-            style={{ backgroundColor: "blue" }}
+            style={{
+              backgroundColor: "blue",
+            }}
           >
-            <Text style={{ fontSize: 20, color: "#fff" }}>Pick a photo</Text>
+            <Text
+              style={{
+                fontSize: 20,
+                color: "#fff",
+              }}
+            >
+              Pick a photo
+            </Text>
           </TouchableOpacity>
         </Content>
         <Fotters />
