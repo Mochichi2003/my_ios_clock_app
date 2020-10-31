@@ -1,13 +1,16 @@
-import { StatusBar } from "expo-status-bar";
+// import { StatusBar } from "expo-status-bar";
 import "react-native-gesture-handler";
 
 import React, { Component } from "react";
 
-import { createStackNavigator } from "@react-navigation/stack";
+// import { createStackNavigator } from "@react-navigation/stack";
 import { AppLoading } from "expo";
 
-import * as Font from "expo-font";
+// import * as Font from "expo-font";
+
 import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+const Stack = createStackNavigator();
 
 import { Entypo, Fontisto, MaterialIcons } from "@expo/vector-icons";
 import {
@@ -25,11 +28,17 @@ import {
   Text,
 } from "native-base";
 
-const Stack = createStackNavigator();
-import { StyleSheet, View, Switch, Share } from "react-native";
+// const Stack = createStackNavigator();
+import {
+  StyleSheet,
+  View,
+  Switch,
+  Share,
+  TouchableOpacity,
+} from "react-native";
 
 import Debugsimport from "debug";
-const debug = Debugsimport("dev:buttons");
+const debug = Debugsimport("maketo:buttons");
 // import { AppLoading } from "expo";
 // import { useDarkMode, DarkModeProvider } from "react-native-dark-mode";
 
@@ -38,14 +47,49 @@ import "dayjs/locale/ja";
 
 dayjs.locale("ja");
 
+const HomeTab = () => {
+  return (
+    <View>
+      <Text>
+        ホーム画面だよあっっっっっっっっっっっっっっっっっっっっっっっっっっっっっｓ
+      </Text>
+      <Text>
+        ホーム画面だよあっっっっっっっっっっっっっっっっっっっっっっっっっっっっっｓ
+      </Text>
+      <Text>
+        ホーム画面だよあっっっっっっっっっっっっっっっっっっっっっっっっっっっっっｓ
+      </Text>
+      <Text>
+        ホーム画面だよあっっっっっっっっっっっっっっっっっっっっっっっっっっっっっｓ
+      </Text>
+      <Text>
+        ホーム画面だよあっっっっっっっっっっっっっっっっっっっっっっっっっっっっっｓ
+      </Text>
+      <Text>
+        ホーム画面だよあっっっっっっっっっっっっっっっっっっっっっっっっっっっっっｓ
+      </Text>
+      <Text>
+        ホーム画面だよあっっっっっっっっっっっっっっっっっっっっっっっっっっっっっｓ
+      </Text>
+      <Text>
+        ホーム画面だよあっっっっっっっっっっっっっっっっっっっっっっっっっっっっっｓ
+      </Text>
+      <Text>
+        ホーム画面だよあっっっっっっっっっっっっっっっっっっっっっっっっっっっっっｓ
+      </Text>
+    </View>
+  );
+};
+
 const Fotters = () => {
   return (
-    <Footer>
-      <FooterTab>
+    <Footer style={styles.footer}>
+      <FooterTab style={styles.footertabs}>
         <Button
           full
           onPress={() => {
             console.log("ボタンを押したよhome");
+
             debug("ボタンを押したよhome");
           }}
         >
@@ -88,12 +132,12 @@ const Fotters = () => {
 };
 
 // type ClockTypes = { timerID: any };
-const isEnabled = true;
+// const isEnabled = true;
 
 export default class AnatomyExample extends Component {
   render() {
     return (
-      <Container>
+      <NavigationContainer>
         <Header style={styles.header}>
           <Left>
             {/* <Button transparent> */}
@@ -101,11 +145,21 @@ export default class AnatomyExample extends Component {
             {/* </Button> */}
           </Left>
           <Body>
-            <Title>ホーム画面だよ</Title>
+            <Title style={{ color: "black" }}>だああ</Title>
           </Body>
           <Right />
         </Header>
-        <Content>{/* ここにメインコンテンツを書く */}</Content>
+        <Content>
+          <Stack.Screen name="Home" component={HomeTab} />
+          <Text>おはようございます</Text>
+
+          <TouchableOpacity
+            onPress={() => alert("Hello, world!")}
+            style={{ backgroundColor: "blue" }}
+          >
+            <Text style={{ fontSize: 20, color: "#fff" }}>Pick a photo</Text>
+          </TouchableOpacity>
+        </Content>
         <Fotters />
         {/* <Footer>
           <FooterTab>
@@ -127,17 +181,27 @@ export default class AnatomyExample extends Component {
             </Button>
           </FooterTab>
         </Footer> */}
-      </Container>
+      </NavigationContainer>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  footertabs: {
+    backgroundColor: "#eee",
+    color: "#000",
+  },
+  footer: {
+    backgroundColor: "#eee",
+    color: "#000",
+  },
   header: {
-    backgroundColor: "#e4f1fe",
+    backgroundColor: "#eee",
+    color: "#000",
   },
   futter_button_text: {
-    fontSize: 14,
+    color: "#000",
+    fontSize: 11,
   },
   button: {
     backgroundColor: "#f00",

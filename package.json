@@ -1,12 +1,12 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "DEBUG=dev:* expo start",
-    "android": "DEBUG=dev:* expo start --android",
-    "ios": "DEBUG=dev:* expo start --ios",
-    "web": "DEBUG=dev:* expo start --web",
+    "start": "DEBUG=maketo:* expo start",
+    "android": "DEBUG=maketo:* expo start --android",
+    "ios": "DEBUG=maketo:* expo start --ios",
+    "web": "DEBUG=maketo:* expo start --web",
     "eject": "expo eject",
-    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx,*.*  ."
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx,.*  ."
   },
   "dependencies": {
     "@expo-google-fonts/roboto": "^0.1.0",
